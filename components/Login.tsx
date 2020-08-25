@@ -8,10 +8,21 @@ export default function Login() {
     if(!!window){
       const current_params = new URLSearchParams(window.location.href)
       if(current_params.get("code") && current_params.get("scope").includes(scope)){
-        console.log("requesting an access token")
+        (async () => {
+          const response = await fetch("http://localhost:3000/login", {
+            method: 'POST', // *GET, POST, PUT, DELETE, etc.
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              code: current_params.get("code")
+            })
+          });
+          return response.json(); // parses JSON response into native JavaScript objects
+        })();
       }
     }
-  })
+  });
 
   const login_redirect = () => {
     var authParams = new URLSearchParams({
