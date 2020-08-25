@@ -27,7 +27,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   // Call an external API endpoint to get posts
-  const res = await fetch(`http://localhost:3000/riders/${params.slug}`)
+  const res = await fetch(`http://localhost:3000/riders/${params.rider_id}`)
   const rider = await res.json()
 
   // By returning { props: posts }, the Blog component
