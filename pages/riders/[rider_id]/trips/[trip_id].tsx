@@ -2,10 +2,10 @@ import Head from 'next/head'
 import Nav from '../../../../components/Nav'
 import styles from '../../../../styles/Home.module.css'
 
-export default function Trip({ trip }) {
+export default function Trip({ trip, rider}) {
   return (
     <div className={styles.container}>
-      <Nav />
+      <Nav rider />
       <h1>{trip.name}</h1>
     </div>
   )
@@ -41,14 +41,17 @@ export async function getStaticPaths(args) {
 export async function getStaticProps({ params }) {
 
   // Call an external API endpoint to get posts
-  const res = await fetch((`http://localhost:3000/riders/${params.rider_id}/trips/${params.trip_id}`))
-  const trip = await res.json()
+  const rider_res = await fetch((`http://localhost:3000/riders/${params.rider_id}`))
+  const trips_res = await fetch((`http://localhost:3000/riders/${params.rider_id}/trips/${params.trip_id}`))
+  const trip = await trips_res.json()
+  const rider = await rider_res.json()
 
   // By returning { props: posts }, the Blog component
   // will receive `posts` as a prop at build time
   return {
     props: {
-      trip
+      trip,
+      rider
     }
   }
 }
