@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Login from './Login';
 
 export default function Nav({ rider }) {
   return (
@@ -28,9 +29,7 @@ export default function Nav({ rider }) {
               Blog
             </a>
           </div>}
-          <div>
-            <a href="#" className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0">Login</a>
-          </div>
+          <Login/>
         </div>
       </nav>
     </>
