@@ -17,7 +17,7 @@ export default function Index({ trips }) {
 
 export async function getStaticPaths(args) {
   // Call an external API endpoint to get trips
-  const riders_res = await fetch(`http://localhost:3000/riders/`)
+  const riders_res = await fetch(`http://localhost:3005/riders/`)
   const riders: Array<any> = await riders_res.json()
 
   // Get the paths we want to pre-render based on trips
@@ -36,7 +36,7 @@ export async function getStaticPaths(args) {
 
 
 export async function getStaticProps(params) {
-  const res = await fetch(`http://localhost:3000/riders/${params.rider_id}/trips`)
+  const res = await fetch(`http://localhost:3005/riders/${params.rider_id}/trips`)
   const trips = await res.json()
   return {
     props: {

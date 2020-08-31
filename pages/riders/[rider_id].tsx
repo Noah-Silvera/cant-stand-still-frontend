@@ -14,7 +14,7 @@ export default function Rider({ rider }) {
 // This function gets called at build time
 export async function getStaticPaths() {
   // Call an external API endpoint to get posts
-  const res = await fetch('http://localhost:3000/riders/')
+  const res = await fetch('http://localhost:3005/riders/')
   const riders = await res.json()
 
   // Get the paths we want to pre-render based on riders
@@ -27,7 +27,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   // Call an external API endpoint to get posts
-  const res = await fetch(`http://localhost:3000/riders/${params.rider_id}`)
+  const res = await fetch(`http://localhost:3005/riders/${params.rider_id}`)
   const rider = await res.json()
 
   // By returning { props: posts }, the Blog component
