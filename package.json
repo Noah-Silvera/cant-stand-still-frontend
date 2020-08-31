@@ -5,9 +5,11 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "test": "cypress open"
   },
   "dependencies": {
+    "cypress": "^5.0.0",
     "next": "9.5.2",
     "postcss-preset-env": "^6.7.0",
     "react": "16.13.1",

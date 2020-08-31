@@ -9,7 +9,7 @@ export default function Login() {
       const current_params = new URLSearchParams(window.location.href)
       if(current_params.get("code") && current_params.get("scope").includes(scope)){
         (async () => {
-          const response = await fetch(`${process.env.SERVER_HOST}/login`, {
+          const response = await fetch(`${window.SERVER_HOST}/login`, {
             method: 'POST', // *GET, POST, PUT, DELETE, etc.
             headers: {
               'Content-Type': 'application/json'
@@ -25,9 +25,10 @@ export default function Login() {
   });
 
   const login_redirect = () => {
+    console.log(window.HOST)
     var authParams = new URLSearchParams({
       client_id: "22020",
-      redirect_uri: `${process.env.HOST}`,
+      redirect_uri: `${window.HOST}`,
       response_type: "code",
       scope: "activity:read"
     });

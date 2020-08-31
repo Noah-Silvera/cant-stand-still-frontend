@@ -8,7 +8,7 @@ export default function Index({ riders }) {
       <Nav/>
       <div>
         {riders.map((rider) => {
-          return <p>Rider: {rider.email}</p>
+          return <p className="rider-info">Rider: {rider.email}</p>
         })}
       </div>
     </div>
