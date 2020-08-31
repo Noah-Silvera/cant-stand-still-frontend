@@ -18,7 +18,7 @@ export default function Index({ riders }) {
 
 
 export async function getStaticProps() {
-  const res = await fetch('http://localhost:3005/riders/')
+  const res = await fetch(`${process.env.SERVER_HOST}/riders/`)
   const riders = await res.json()
   return {
     props: {

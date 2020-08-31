@@ -14,11 +14,11 @@ export default function Trip({ trip, rider}) {
 // This function gets called at build time
 export async function getStaticPaths(args) {
   // Call an external API endpoint to get trips
-  const riders_res = await fetch(`http://localhost:3005/riders/`)
+  const riders_res = await fetch(`${process.env.SERVER_HOST}/riders/`)
   const riders: Array<any> = await riders_res.json()
 
   const path_arrays = await Promise.all(riders.map(async (rider): Promise<string[]> => {
-    const trips_res = await fetch(`http://localhost:3005/riders/${rider.id}/trips`)
+    const trips_res = await fetch(`${process.env.SERVER_HOST}/riders/${rider.id}/trips`)
     const trips = await trips_res.json()
 
     // Get the paths we want to pre-render based on trips
@@ -41,8 +41,8 @@ export async function getStaticPaths(args) {
 export async function getStaticProps({ params }) {
 
   // Call an external API endpoint to get posts
-  const rider_res = await fetch((`http://localhost:3005/riders/${params.rider_id}`))
-  const trips_res = await fetch((`http://localhost:3005/riders/${params.rider_id}/trips/${params.trip_id}`))
+  const rider_res = await fetch((`${process.env.SERVER_HOST}/riders/${params.rider_id}`))
+  const trips_res = await fetch((`${process.env.SERVER_HOST}/riders/${params.rider_id}/trips/${params.trip_id}`))
   const trip = await trips_res.json()
   const rider = await rider_res.json()
 
