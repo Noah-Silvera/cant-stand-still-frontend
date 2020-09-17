@@ -7,7 +7,7 @@ export default function Login() {
   useEffect(() => {
     if(!!window){
       const current_params = new URLSearchParams(window.location.href)
-      if(current_params.get("code") && current_params.get("scope").includes(scope)){
+      if(current_params.get("code") && current_params.get("scope") && window.SERVER_HOST){
         (async () => {
           const response = await fetch(`${window.SERVER_HOST}/login`, {
             method: 'POST', // *GET, POST, PUT, DELETE, etc.
@@ -15,14 +15,44 @@ export default function Login() {
               'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-              code: current_params.get("code")
+              code: current_params.get("code"),
+              scope: current_params.get("scope")
             })
           });
-          return response.json(); // parses JSON response into native JavaScript objects
+
+          try {
+            var res = await response.json();
+          } catch(err){
+            on_login_failure(err)
+          }
+
+          if(response.status == 200){
+            on_login_success(res)
+          } else {
+            on_login_failure(res)
+          }
         })();
       }
     }
   });
+
+  const on_login_failure = (err) => {
+    if(err?.message){
+      alert(err.message)
+    } else {
+      // TODO - change this to a proper error alert
+      alert("An unknown error occured")
+    }
+  }
+
+  const on_login_success = (res) => {
+    //  TODO - set some cookies or session variables for being authorized
+
+    console.log("Logged in! Yay!")
+    console.debug(res)
+
+    alert(res.id)
+  }
 
   const login_redirect = () => {
     console.log(window.HOST)
