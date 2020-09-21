@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-
+// TODO -actually implement logout
 export default function Login() {
 
   const scope = "activity:read"
@@ -14,6 +14,7 @@ export default function Login() {
             headers: {
               'Content-Type': 'application/json'
             },
+            credentials: 'include',
             body: JSON.stringify({
               code: current_params.get("code"),
               scope: current_params.get("scope")
@@ -46,12 +47,10 @@ export default function Login() {
   }
 
   const on_login_success = (res) => {
-    //  TODO - set some cookies or session variables for being authorized
+    sessionStorage['logged_in'] = "true";
 
-    console.log("Logged in! Yay!")
-    console.debug(res)
-
-    alert(res.id)
+    // TODO - actually remember login redirect
+    window.location.replace('/')
   }
 
   const login_redirect = () => {
@@ -66,9 +65,16 @@ export default function Login() {
     window.location.replace(url)
   }
 
+  const is_logged_in = (): boolean => {
+    if (typeof window !== 'undefined') {
+      return sessionStorage['logged_in'] == "true";
+    }
+    return false
+  }
+
   return (
     <div>
-      <a onClick={login_redirect} className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0">Login</a>
+      {!is_logged_in() && <a onClick={login_redirect} className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0">Login</a>}
     </div>
   )
 }
