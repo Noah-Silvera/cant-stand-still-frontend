@@ -26,7 +26,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   // Call an external API endpoint to get posts
-  const res = await fetch(`${process.env.SERVER_HOST}/riders/${params.rider_id}`)
+  const res = await fetch(`${process.env.SERVER_HOST}/riders/${params.user_id}`)
   const rider = await res.json()
 
   return {

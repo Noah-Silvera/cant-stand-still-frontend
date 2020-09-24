@@ -20,14 +20,7 @@ export async function getStaticPaths(args) {
   const riders_res = await fetch(`${process.env.SERVER_HOST}/riders/`)
   const riders: Array<any> = await riders_res.json()
 
-  // Get the paths we want to pre-render based on trips
-  const paths = riders.map((rider) => {
-    return {
-      params: {
-        rider_id: `${rider.id}`,
-      }
-    }
-  })
+  const paths: string[] = riders.map((rider) => `/riders/${rider.user_id}/trips`)
 
   // We'll pre-render only these paths at build time.
   // { fallback: false } means other routes should 404.
@@ -36,7 +29,7 @@ export async function getStaticPaths(args) {
 
 
 export async function getStaticProps(params) {
-  const res = await fetch(`${process.env.SERVER_HOST}/riders/${params.rider_id}/trips`)
+  const res = await fetch(`${process.env.SERVER_HOST}/riders/${params.user_id}/trips`)
   const trips = await res.json()
   return {
     props: {

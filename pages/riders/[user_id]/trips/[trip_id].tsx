@@ -25,7 +25,7 @@ export async function getStaticPaths(args) {
     return trips.map((trip) => {
       return {
         params: {
-          rider_id: `${rider.id}`,
+          user_id: `${rider.id}`,
           trip_id: `${trip.id}`
         }
       }
@@ -41,8 +41,8 @@ export async function getStaticPaths(args) {
 export async function getStaticProps({ params }) {
 
   // Call an external API endpoint to get posts
-  const rider_res = await fetch((`${process.env.SERVER_HOST}/riders/${params.rider_id}`))
-  const trips_res = await fetch((`${process.env.SERVER_HOST}/riders/${params.rider_id}/trips/${params.trip_id}`))
+  const rider_res = await fetch((`${process.env.SERVER_HOST}/riders/${params.user_id}`))
+  const trips_res = await fetch((`${process.env.SERVER_HOST}/riders/${params.user_id}/trips/${params.trip_id}`))
   const trip = await trips_res.json()
   const rider = await rider_res.json()
 
