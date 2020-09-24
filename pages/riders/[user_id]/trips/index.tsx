@@ -28,7 +28,7 @@ export async function getStaticPaths(args) {
 }
 
 
-export async function getStaticProps(params) {
+export async function getStaticProps({ params }) {
   const res = await fetch(`${process.env.SERVER_HOST}/riders/${params.user_id}/trips`)
   const trips = await res.json()
   return {
