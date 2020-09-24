@@ -5,7 +5,7 @@ import styles from '../../styles/Home.module.css'
 export default function Rider({ rider }) {
   return (
     <div className={styles.container}>
-      <Nav rider/>
+      <Nav rider={rider}/>
       <h1>{rider.user_id}</h1>
     </div>
   )
