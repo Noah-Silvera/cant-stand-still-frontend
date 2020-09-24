@@ -6,7 +6,7 @@ export default function Rider({ rider }) {
   return (
     <div className={styles.container}>
       <Nav rider/>
-      <h1>{rider.email}</h1>
+      <h1>{rider.user_id}</h1>
     </div>
   )
 }
@@ -18,9 +18,8 @@ export async function getStaticPaths() {
   const riders = await res.json()
 
   // Get the paths we want to pre-render based on riders
-  const paths = riders.map((rider) => `/riders/${rider.id}`)
+  const paths = riders.map((rider) => `/riders/${rider.user_id}`)
 
-  // We'll pre-render only these paths at build time.
   // { fallback: false } means other routes should 404.
   return { paths, fallback: false }
 }
@@ -30,8 +29,6 @@ export async function getStaticProps({ params }) {
   const res = await fetch(`${process.env.SERVER_HOST}/riders/${params.rider_id}`)
   const rider = await res.json()
 
-  // By returning { props: posts }, the Blog component
-  // will receive `posts` as a prop at build time
   return {
     props: {
       rider
