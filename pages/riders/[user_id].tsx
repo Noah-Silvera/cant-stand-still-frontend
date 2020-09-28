@@ -1,11 +1,10 @@
-import Head from 'next/head'
-import Nav from '../../components/Nav'
 import styles from '../../styles/Home.module.css'
+import RiderNav from './RiderNav'
 
 export default function Rider({ rider }) {
   return (
     <div className={styles.container}>
-      <Nav rider={rider}/>
+      <RiderNav rider={rider}/>
       <h1>{rider.user_id}</h1>
     </div>
   )

@@ -1,11 +1,10 @@
-import Head from 'next/head'
-import Nav from '../../../../components/Nav'
 import styles from '../../../../styles/Home.module.css'
+import RiderNav from '../../RiderNav'
 
-export default function Index({ trips }) {
+export default function Index({ trips, rider }) {
   return (
     <div className={styles.container}>
-      <Nav/>
+      <RiderNav rider={rider}/>
       <div>
         {trips.map((trip) => {
           return <p>Trip: {trip.name}</p>
@@ -29,11 +28,14 @@ export async function getStaticPaths(args) {
 
 
 export async function getStaticProps({ params }) {
-  const res = await fetch(`${process.env.SERVER_HOST}/riders/${params.user_id}/trips`)
-  const trips = await res.json()
+  const riders_res = await fetch(`${process.env.SERVER_HOST}/riders/${params.user_id}`)
+  const trips_res = await fetch(`${process.env.SERVER_HOST}/riders/${params.user_id}/trips`)
+  const trips = await trips_res.json()
+  const rider = await riders_res.json()
   return {
     props: {
-      trips
+      trips,
+      rider
     }
   }
 }

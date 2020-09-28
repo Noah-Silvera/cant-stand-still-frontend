@@ -1,10 +1,7 @@
 import Head from 'next/head'
 import Login from './Login';
-import { useRouter } from 'next/router'
 
-export default function Nav({ rider }) {
-  const router = useRouter()
-
+export default function Nav(props) {
   return (
     <>
       <Head>
@@ -21,17 +18,7 @@ export default function Nav({ rider }) {
           </button>
         </div>
         <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
-          {rider && <div className="text-sm lg:flex-grow">
-            <a onClick={() => router.push(`/riders/${rider.user_id}/trips`)} className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
-              Trips
-            </a>
-            <a onClick={() => router.push(`/riders/${rider.user_id}/stats`)} className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
-              Stats
-            </a>
-            {/* <a className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white">
-              Strava
-            </a> */}
-          </div>}
+          {props.children}
           <Login/>
         </div>
       </nav>
