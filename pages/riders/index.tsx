@@ -9,18 +9,20 @@ export default function Index({ riders }) {
   return (
     <div className={styles.container}>
       <Nav/>
-      <div>
+      <ul>
         {riders.map((rider) => {
           return (
-              <p onClick={() => router.push(`${router.pathname}/${rider.user_id}`)} className="rider-info">Rider: {rider.user_id}</p>
+              <li onClick={() => router.push(`${router.pathname}/${rider.user_id}`)}
+                 className="rider-info"
+                 key={rider.user_id}>
+                Rider: {rider.first_name} {rider.last_name}
+              </li>
           )
         })}
-      </div>
+      </ul>
     </div>
   )
 }
-
-
 
 export async function getStaticProps() {
   const res = await fetch(`${process.env.SERVER_HOST}/riders/`)

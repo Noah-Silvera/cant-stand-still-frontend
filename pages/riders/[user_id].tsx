@@ -5,7 +5,7 @@ export default function Rider({ rider }) {
   return (
     <div className={styles.container}>
       <RiderNav rider={rider}/>
-      <h1>{rider.user_id}</h1>
+      <h1 className="rider-info">{rider.first_name} {rider.last_name}</h1>
     </div>
   )
 }

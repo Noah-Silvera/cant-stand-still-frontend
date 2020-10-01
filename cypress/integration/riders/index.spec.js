@@ -5,9 +5,10 @@ context('Riders index page', () => {
     cy.visit('/riders')
   })
 
-  it('displays the email of each rider', () => {
+  it('displays the name of each rider', () => {
     cy.get('.rider-info')
-      .first()
-      .contains('Rider: noah.a.silvera@gmail.com')
+      .contains('Rider: Noah Silvera')
+      .next()
+      .contains('Rider: Saskia Kowalik')
   })
 })
