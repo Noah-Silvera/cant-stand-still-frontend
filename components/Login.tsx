@@ -1,6 +1,7 @@
 import { useEffect } from "react";
+import styles from "./Login.module.css"
 // TODO -actually implement logout
-export default function Login() {
+export default function Login({ className }) {
 
   const scope = "activity:read"
 
@@ -73,7 +74,7 @@ export default function Login() {
   }
 
   return (
-    <div>
+    <div className={`${className} ${styles.container}`}>
       {!is_logged_in() && <a onClick={login_redirect} className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0">Login</a>}
     </div>
   )

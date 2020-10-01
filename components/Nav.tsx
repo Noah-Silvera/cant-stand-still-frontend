@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Login from './Login';
+import styles from './Nav.module.css'
 
 export default function Nav(props) {
   return (
@@ -17,9 +18,9 @@ export default function Nav(props) {
             <svg className="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
           </button>
         </div>
-        <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
+        <div className={`w-full block flex-grow lg:flex lg:items-center lg:w-auto ${styles["nav-item-container"]}`}>
           {props.children}
-          <Login/>
+          <Login className={styles.login}/>
         </div>
       </nav>
     </>

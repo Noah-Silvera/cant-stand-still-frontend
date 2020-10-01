@@ -1,0 +1,8 @@
+.nav-item-container {
+  display:flex;
+}
+
+.login {
+  flex-grow: 1;
+  justify-self: flex-end;
+}
