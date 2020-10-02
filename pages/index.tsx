@@ -6,6 +6,7 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <Nav/>
+      <a href="riders" >Riders</a>
     </div>
   )
 }
