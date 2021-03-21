@@ -1,30 +1,24 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Cant Stand Still
 
-## Getting Started
+This is an application which aims to allow connect and visualize your strava data as trips over a time period. It will allow you to login with Strava, create "trips" that span date ranges, and view those trips as connected rides on a map, along with some stats
 
-First, run the development server:
+## Development Setup
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+1. Clone the repository
+1. Ensure you have the node version specified in the .tool-versions file (Also, you should check out [ASDF](https://github.com/asdf-vm/asdf))
+3. Run `yarn install`
+4. Run the nextjs server `yarn dev -p 4000`
+    * _You can change the port the server runs on, but you will need to overide the PORT variable in your [.env.local](https://nextjs.org/docs/basic-features/environment-variables#loading-environment-variables) file_
+## Running the tests
 
-Open [http://localhost:3005](http://localhost:3005) with your browser to see the result.
+This app just has feature specs, which can be run with cypress
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+To open cypress run `yarn test`
 
-## Learn More
+## Testing with the frontend
 
-To learn more about Next.js, take a look at the following resources:
+This server is meant to be run in [tandem with the backend](https://github.com/Noah-Silvera/cant-stand-still-api). By default, this application is hooked up to a testing deployment of the app, but if you want to test both repos in tandem, you should hook them up together locally.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+1. Create an `.env.local` file
+1. Overide the `SERVER_HOST` variable with your locally running api server. e.g. `http://localhost:3000`
