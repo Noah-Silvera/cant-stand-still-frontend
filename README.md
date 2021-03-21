@@ -29,3 +29,7 @@ This server is meant to be run in [tandem with the backend](https://github.com/N
 
 1. Create an `.env.local` file
 1. Overide the `SERVER_HOST` variable with your locally running api server. e.g. `http://localhost:3000`
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md)
