@@ -1,28 +1,29 @@
-// import App from 'next/app'
+import App from 'next/app'
 import '../styles/index.css'
 import { useEffect } from 'react'
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps, env }) {
   useEffect(() => {
     if(window){
-      window.HOST = process.env.VERCEL_URL || process.env.HOST
-      window.SERVER_HOST = process.env.SERVER_HOST
+      window.HOST = env.HOST
+      window.SERVER_HOST = env.SERVER_HOST
     }
   })
 
   return <Component {...pageProps} />
 }
 
-// Only uncomment this method if you have blocking data requirements for
-// every single page in your application. This disables the ability to
-// perform automatic static optimization, causing every page in your app to
-// be server-side rendered.
-//
-// MyApp.getInitialProps = async (appContext) => {
-//   // calls page's `getInitialProps` and fills `appProps.pageProps`
-//   const appProps = await App.getInitialProps(appContext);
-//
-//   return { ...appProps }
-// }
+
+MyApp.getInitialProps = async (appContext) => {
+  const appProps = await App.getInitialProps(appContext);
+
+  return {
+    ...appProps,
+    env: {
+      HOST: process.env.VERCEL_URL || process.env.HOST,
+      SERVER_HOST: process.env.SERVER_HOST
+    }
+  }
+}
 
 export default MyApp
