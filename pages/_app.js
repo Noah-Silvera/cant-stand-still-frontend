@@ -5,8 +5,8 @@ import { useEffect } from 'react'
 function MyApp({ Component, pageProps }) {
   useEffect(() => {
     if(window){
-      window.HOST = "http://localhost:4000"
-      window.SERVER_HOST = "http://localhost:3005"
+      window.HOST = process.env.VERCEL_URL || process.env.HOST
+      window.SERVER_HOST = process.env.SERVER_HOST
     }
   })
 
