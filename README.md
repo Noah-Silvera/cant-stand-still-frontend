@@ -1,6 +1,8 @@
 ## Cant Stand Still
 
-This is an application which aims to allow connect and visualize your strava data as trips over a time period. It will allow you to login with Strava, create "trips" that span date ranges, and view those trips as connected rides on a map, along with some stats
+This is an application which aims to allow connect and visualize your strava data as trips over a time period. It will allow you to login with Strava, create "trips" that span date ranges, and view those trips as connected rides on a map, along with some stats.
+
+[Check it out here!](https://cant-stand-still-frontend.vercel.app/) (WIP)
 
 ## Development Setup
 
