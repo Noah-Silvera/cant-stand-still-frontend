@@ -20,7 +20,7 @@ MyApp.getInitialProps = async (appContext) => {
   return {
     ...appProps,
     env: {
-      HOST: process.env.VERCEL_URL || process.env.HOST,
+      HOST: process.env.HOST,
       SERVER_HOST: process.env.SERVER_HOST
     }
   }
