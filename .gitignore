@@ -13,9 +13,6 @@ Thumbs.db
 # Ignore built ts files
 dist/**/*
 
-# ignore yarn.lock
-yarn.lock
-
 .next
 # dotenv environment variables file (build for Zeit Now)
 .env
