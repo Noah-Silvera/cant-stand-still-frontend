@@ -8,9 +8,9 @@ export default function Login({ className }) {
   useEffect(() => {
     if(!!window){
       const current_params = new URLSearchParams(window.location.href)
-      if(current_params.get("code") && current_params.get("scope") && window.SERVER_HOST){
+      if(current_params.get("code") && current_params.get("scope") && window["SERVER_HOST"]){
         (async () => {
-          const response = await fetch(`${window.SERVER_HOST}/login`, {
+          const response = await fetch(`${window["SERVER_HOST"]}/login`, {
             method: 'POST', // *GET, POST, PUT, DELETE, etc.
             headers: {
               'Content-Type': 'application/json'
@@ -55,10 +55,10 @@ export default function Login({ className }) {
   }
 
   const login_redirect = () => {
-    console.log(window.HOST)
+    console.log(window["HOST"])
     var authParams = new URLSearchParams({
       client_id: "22020",
-      redirect_uri: `${window.HOST}`,
+      redirect_uri: `${window["HOST"]}`,
       response_type: "code",
       scope: "activity:read"
     });
