@@ -3,12 +3,16 @@ import '../styles/index.css'
 import { useEffect } from 'react'
 
 function MyApp({ Component, pageProps, env }) {
-  useEffect(() => {
+  try {
     if(window){
       window.HOST = env.HOST
       window.SERVER_HOST = env.SERVER_HOST
     }
-  })
+  } catch (e) {
+    if (!(e instanceof ReferenceError)) {
+      throw e
+    }
+  }
 
   return <Component {...pageProps} />
 }
