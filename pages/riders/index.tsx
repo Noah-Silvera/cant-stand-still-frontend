@@ -30,6 +30,7 @@ export async function getStaticProps() {
   return {
     props: {
       riders
-    }
+    },
+    revalidate: 5
   }
 }
