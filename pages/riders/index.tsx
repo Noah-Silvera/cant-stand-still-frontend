@@ -17,7 +17,7 @@ export default function Index({ riders }) {
               className="w-full md:w-1/2 lg:w-1/3 xl:w-1/4 mb-8 cursor-pointer"
               rider={rider}
               key={rider.user_id}
-              onClick={() => router.push(`${router.pathname}/${rider.user_id}`)}
+              onClick={() => router.push(`${router.pathname}/${rider.user_id}/trips`)}
             ></RiderCard>
           )
         })}
