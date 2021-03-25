@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Nav from '../components/Nav'
+import NavLink from '../components/NavLink'
 import styles from '../styles/Home.module.css'
 
 export default function Home() {
@@ -7,7 +8,7 @@ export default function Home() {
     <div className={styles.container}>
       <Nav>
         <div className="text-sm lg:flex-grow">
-          <a href="riders" className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4" >Riders</a>
+          <NavLink href="riders">Riders</NavLink>
         </div>
       </Nav>
     </div>
