@@ -13,9 +13,6 @@ export default function RiderNav({ rider }){
         <a onClick={() => router.push(`/riders/${rider.user_id}/stats`)} className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
           Stats
         </a>
-        {/* <a className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white">
-          Strava
-        </a> */}
       </div>
     </Nav>
   )
