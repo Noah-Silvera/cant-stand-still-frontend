@@ -1,4 +1,5 @@
 import Nav from '../../components/Nav'
+import RiderCard from '../../components/riders/RiderCard'
 import styles from '../../styles/Home.module.css'
 import { useRouter } from 'next/router'
 
@@ -9,17 +10,18 @@ export default function Index({ riders }) {
   return (
     <div className={styles.container}>
       <Nav/>
-      <ul>
+      <div className="flex flex-wrap -mx-2 mb-8 mt-8">
         {riders.map((rider) => {
           return (
-              <li onClick={() => router.push(`${router.pathname}/${rider.user_id}`)}
-                 className="rider-info"
-                 key={rider.user_id}>
-                Rider: {rider.first_name} {rider.last_name}
-              </li>
+            <RiderCard
+              className="w-full md:w-1/2 lg:w-1/3 xl:w-1/4 mb-8 cursor-pointer"
+              rider={rider}
+              key={rider.user_id}
+              onClick={() => router.push(`${router.pathname}/${rider.user_id}`)}
+            ></RiderCard>
           )
         })}
-      </ul>
+      </div >
     </div>
   )
 }
