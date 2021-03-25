@@ -7,10 +7,8 @@ export default function RiderNav({ rider }){
 
   return (
     <Nav>
-      <div className="text-sm lg:flex-grow">
-        <NavLink onClick={() => router.push(`/riders/${rider.user_id}/trips`)} >Trips</NavLink>
-        <NavLink onClick={() => router.push(`/riders/${rider.user_id}/stats`)} >Stats</NavLink>
-      </div>
+      <NavLink onClick={() => router.push(`/riders/${rider.user_id}/trips`)} >Trips</NavLink>
+      <NavLink onClick={() => router.push(`/riders/${rider.user_id}/stats`)} >Stats</NavLink>
     </Nav>
   )
 }

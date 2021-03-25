@@ -7,9 +7,7 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <Nav>
-        <div className="text-sm lg:flex-grow">
-          <NavLink href="riders">Riders</NavLink>
-        </div>
+        <NavLink href="riders">Riders</NavLink>
       </Nav>
     </div>
   )

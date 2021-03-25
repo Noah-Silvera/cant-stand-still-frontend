@@ -19,7 +19,9 @@ export default function Nav(props) {
           </button>
         </div>
         <div className={`w-full block flex-grow lg:flex lg:items-center lg:w-auto ${styles["nav-item-container"]}`}>
-          {props.children}
+          <div className="text-sm lg:flex-grow">
+            {props.children}
+          </div>
           <Login className={styles.login}/>
         </div>
       </nav>
