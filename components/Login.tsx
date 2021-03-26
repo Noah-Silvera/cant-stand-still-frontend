@@ -85,6 +85,7 @@ export default function Login({ className }) {
     if (typeof window !== 'undefined') {
       sessionStorage.clear()
       render_auth_button()
+      fetch(`${window["SERVER_HOST"]}/logout`)
     }
   }
 
