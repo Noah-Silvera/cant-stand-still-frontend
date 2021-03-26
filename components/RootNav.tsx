@@ -2,7 +2,7 @@ import Nav from './Nav'
 import NavLink from './NavLink'
 import { useRouter } from 'next/router'
 
-export default function RootNav({ children }) {
+export default function RootNav({ children = [] }) {
   const router = useRouter()
 
   return (
