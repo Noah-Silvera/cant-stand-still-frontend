@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <Nav>
-        <NavLink href="riders">Riders</NavLink>
+        <NavLink href="riders" is_active_path="/riders">Riders</NavLink>
       </Nav>
     </div>
   )

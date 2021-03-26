@@ -7,8 +7,8 @@ export default function RiderNav({ rider }){
 
   return (
     <Nav>
-      <NavLink onClick={() => router.push(`/riders/${rider.user_id}/trips`)} >Trips</NavLink>
-      <NavLink onClick={() => router.push(`/riders/${rider.user_id}/stats`)} >Stats</NavLink>
+      <NavLink onClick={() => router.push(`/riders/${rider.user_id}/trips`)} is_active_path={`/riders/${rider.user_id}/trips`} >Trips</NavLink>
+      <NavLink onClick={() => router.push(`/riders/${rider.user_id}/stats`)} is_active_path={`/riders/${rider.user_id}/stats`}>Stats</NavLink>
     </Nav>
   )
 }

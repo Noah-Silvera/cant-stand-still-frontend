@@ -1,4 +1,5 @@
 import Nav from '../../components/Nav'
+import NavLink from '../../components/NavLink'
 import RiderCard from '../../components/riders/RiderCard'
 import styles from '../../styles/Home.module.css'
 import { useRouter } from 'next/router'
@@ -9,7 +10,9 @@ export default function Index({ riders }) {
 
   return (
     <div className={styles.container}>
-      <Nav/>
+      <Nav>
+        <NavLink href="riders" is_active_path="/riders">Riders</NavLink>
+      </Nav>
       <div className="flex flex-wrap -mx-2 mb-8 mt-8">
         {riders.map((rider) => {
           return (
