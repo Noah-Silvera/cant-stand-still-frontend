@@ -1,8 +1,11 @@
 import TripCard from '../../../../components/riders/trips/TripCard'
 import styles from '../../../../styles/Home.module.css'
 import RiderNav from '../../RiderNav'
+import { useRouter } from 'next/router'
 
 export default function Index({ trips, rider }) {
+  const router = useRouter()
+
   return (
     <div className={styles.container}>
       <RiderNav rider={rider}/>
@@ -11,6 +14,13 @@ export default function Index({ trips, rider }) {
           return (
             <TripCard
               className="w-full md:w-1/2 lg:w-1/3 xl:w-1/4 mb-8 cursor-pointer"
+              onClick={() => router.push({
+                pathname: `${router.pathname}/[trip_id]`,
+                query: {
+                  user_id: rider.user_id,
+                  trip_id: trip.id
+                }
+              })}
               key={trip.id}
               trip={trip} />
           )
