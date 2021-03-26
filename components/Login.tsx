@@ -48,14 +48,13 @@ export default function Login({ className }) {
   }
 
   const on_login_success = (res) => {
-    sessionStorage['logged_in'] = "true";
+    sessionStorage['user_id'] = res["id"]
 
     // TODO - actually remember login redirect
     window.location.replace('/')
   }
 
   const login_redirect = () => {
-    console.log(window["HOST"])
     var authParams = new URLSearchParams({
       client_id: "22020",
       redirect_uri: `${window["HOST"]}`,
@@ -68,7 +67,7 @@ export default function Login({ className }) {
 
   const is_logged_in = (): boolean => {
     if (typeof window !== 'undefined') {
-      return sessionStorage['logged_in'] == "true";
+      return !!sessionStorage['user_id'];
     }
     return false
   }
