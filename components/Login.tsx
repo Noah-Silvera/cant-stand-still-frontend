@@ -1,9 +1,23 @@
 import { useEffect } from "react";
 import styles from "./Login.module.css"
-// TODO -actually implement logout
+
 export default function Login({ className }) {
 
   const scope = "activity:read"
+
+  const render_auth_button = () => {
+    let auth_elem = document.getElementById("login-logout-button")
+
+    if(is_logged_in()) {
+      auth_elem.innerHTML = "Logout"
+      auth_elem.removeEventListener('click', login_redirect)
+      auth_elem.addEventListener('click', logout)
+    } else {
+      auth_elem.innerHTML = "Login"
+      auth_elem.removeEventListener('click', logout)
+      auth_elem.addEventListener('click', login_redirect)
+    }
+  }
 
   useEffect(() => {
     if(!!window){
@@ -35,6 +49,8 @@ export default function Login({ className }) {
           }
         })();
       }
+
+      render_auth_button()
     }
   });
 
@@ -65,6 +81,13 @@ export default function Login({ className }) {
     window.location.replace(url)
   }
 
+  const logout = () => {
+    if (typeof window !== 'undefined') {
+      sessionStorage.clear()
+      render_auth_button()
+    }
+  }
+
   const is_logged_in = (): boolean => {
     if (typeof window !== 'undefined') {
       return !!sessionStorage['user_id'];
@@ -74,7 +97,10 @@ export default function Login({ className }) {
 
   return (
     <div className={`${className} ${styles.container}`}>
-      {!is_logged_in() && <a onClick={login_redirect} className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0">Login</a>}
+      <a
+        id="login-logout-button"
+        className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0"
+      ></a>
     </div>
   )
 }
