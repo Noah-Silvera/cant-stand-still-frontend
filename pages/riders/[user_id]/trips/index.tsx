@@ -1,3 +1,4 @@
+import TripCard from '../../../../components/riders/trips/TripCard'
 import styles from '../../../../styles/Home.module.css'
 import RiderNav from '../../RiderNav'
 
@@ -5,9 +6,14 @@ export default function Index({ trips, rider }) {
   return (
     <div className={styles.container}>
       <RiderNav rider={rider}/>
-      <div>
+      <div className={"flex flex-wrap -mx-2 mb-8 mt-8"}>
         {trips.map((trip) => {
-          return <p>Trip: {trip.name}</p>
+          return (
+            <TripCard
+              className="w-full md:w-1/2 lg:w-1/3 xl:w-1/4 mb-8 cursor-pointer"
+              key={trip.id}
+              trip={trip} />
+          )
         })}
       </div>
     </div>
