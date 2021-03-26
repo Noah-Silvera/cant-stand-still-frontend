@@ -6,9 +6,7 @@ context('Riders index page', () => {
   })
 
   it('displays the name of each rider', () => {
-    cy.get('.rider-info')
-      .contains('Rider: Noah Silvera')
-      .next()
-      .contains('Rider: Saskia Kowalik')
+    cy.contains('Noah Silvera')
+    cy.contains('Saskia Kowalik')
   })
 })
