@@ -45,7 +45,7 @@ export async function getStaticPaths(args) {
 
 export async function getStaticProps({ params }) {
   const riders_res = await fetch(`${process.env.SERVER_HOST}/riders/${params.user_id}`)
-  const trips_res = await fetch(`${process.env.SERVER_HOST}/riders/${params.user_id}/trips`)
+  const trips_res = await fetch(`${process.env.SERVER_HOST}/riders/${params.user_id}/trips.json`)
   const trips = await trips_res.json()
   const rider = await riders_res.json()
   return {
