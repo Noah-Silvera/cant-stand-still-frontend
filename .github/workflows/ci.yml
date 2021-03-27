@@ -32,7 +32,7 @@ jobs:
   cypress_run:
     environment: test
     env:
-      SERVER_HOST: https://cant-stand-still-api-test.herokuapp.com/
+      SERVER_HOST: https://cant-stand-still-admin-test.herokuapp.com/
     runs-on: ubuntu-latest
     # let's make sure our tests pass on Chrome browser
     name: Feature tests on Chrome
