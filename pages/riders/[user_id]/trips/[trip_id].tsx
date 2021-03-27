@@ -22,7 +22,7 @@ export async function getStaticPaths() {
 
     const trips = await trips_req.json()
 
-    return trips.map((trip) => `/riders/${rider.user_id}/trips/${trip.id}.json`)
+    return trips.map((trip) => `/riders/${rider.user_id}/trips/${trip.id}`)
   }))
 
   var paths = trip_paths_array.reduce((all_trip_paths: string[], trip_paths: string[]) => all_trip_paths.concat(trip_paths), [])
