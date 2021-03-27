@@ -22,7 +22,7 @@ export async function getStaticPaths() {
 
     const trips = await trips_req.json()
 
-    return trips.map((trip) => `/riders/${rider.user_id}/trips/${trip.id}`)
+    return trips.map((trip) => `/riders/${rider.user_id}/trips/${trip.id}.json`)
   }))
 
   var paths = trip_paths_array.reduce((all_trip_paths: string[], trip_paths: string[]) => all_trip_paths.concat(trip_paths), [])
@@ -32,7 +32,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const rider_req = await fetch(`${process.env.SERVER_HOST}/riders/${params.user_id}`)
-  const trip_req = await fetch(`${process.env.SERVER_HOST}/riders/${params.user_id}/trips/${params.trip_id}`)
+  const trip_req = await fetch(`${process.env.SERVER_HOST}/riders/${params.user_id}/trips/${params.trip_id}.json`)
   const trip = await trip_req.json()
   const rider = await rider_req.json()
 
