@@ -1,5 +1,5 @@
 import styles from '../../../../styles/Home.module.css'
-import RiderNav from '../../RiderNav'
+import RiderNav from '../../../../components/RiderNav'
 
 export default function Trip({ trip, rider }) {
   return (

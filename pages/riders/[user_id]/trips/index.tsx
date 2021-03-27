@@ -1,6 +1,6 @@
 import TripCard from '../../../../components/riders/trips/TripCard'
 import styles from '../../../../styles/Home.module.css'
-import RiderNav from '../../RiderNav'
+import RiderNav from '../../../../components/RiderNav'
 import { useRouter } from 'next/router'
 
 export default function Index({ trips, rider }) {

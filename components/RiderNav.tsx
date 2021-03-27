@@ -1,8 +1,8 @@
 import { useRouter } from 'next/router'
-import NavArrow from '../../components/NavArrow'
-import NavLink from '../../components/NavLink'
-import NavSeparator from '../../components/NavSeparator'
-import RootNav from '../../components/RootNav'
+import NavArrow from './NavArrow'
+import NavLink from './NavLink'
+import NavSeparator from './NavSeparator'
+import RootNav from './RootNav'
 
 export default function RiderNav({ rider }){
   const router = useRouter()
