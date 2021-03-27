@@ -53,7 +53,7 @@ export default function Login({ className }) {
   }
 
   const admin_redirect= () => {
-    window.location.replace("https://cant-stand-still-admin.herokuapp.com/")
+    window.location.replace(`https://cant-stand-still-admin.herokuapp.com/${sessionStorage["user_id"]}`)
   }
 
   const login_redirect = () => {
