@@ -5,20 +5,6 @@ export default function Login({ className }) {
 
   const scope = "activity:read"
 
-  const render_auth_button = () => {
-    let auth_elem = document.getElementById("login-logout-button")
-
-    if(is_logged_in()) {
-      auth_elem.innerHTML = "Logout"
-      auth_elem.removeEventListener('click', login_redirect)
-      auth_elem.addEventListener('click', logout)
-    } else {
-      auth_elem.innerHTML = "Login"
-      auth_elem.removeEventListener('click', logout)
-      auth_elem.addEventListener('click', login_redirect)
-    }
-  }
-
   useEffect(() => {
     if(!!window){
       const current_params = new URLSearchParams(window.location.href)
@@ -43,14 +29,12 @@ export default function Login({ className }) {
           }
 
           if(response.status == 200){
-            on_login_success(res)
+            on_login_success(res["id"])
           } else {
             on_login_failure(res)
           }
         })();
       }
-
-      render_auth_button()
     }
   });
 
@@ -63,29 +47,27 @@ export default function Login({ className }) {
     }
   }
 
-  const on_login_success = (res) => {
-    sessionStorage['user_id'] = res["id"]
+  const on_login_success = (user_id) => {
+    sessionStorage['user_id'] = user_id
+    admin_redirect()
+  }
 
-    // TODO - actually remember login redirect
-    window.location.replace('/')
+  const admin_redirect= () => {
+    window.location.replace('/admin')
   }
 
   const login_redirect = () => {
-    var authParams = new URLSearchParams({
-      client_id: "22020",
-      redirect_uri: `${window["HOST"]}`,
-      response_type: "code",
-      scope: "activity:read"
-    });
-    const url = "https://www.strava.com/oauth/authorize?" + authParams.toString()
-    window.location.replace(url)
-  }
-
-  const logout = () => {
-    if (typeof window !== 'undefined') {
-      sessionStorage.clear()
-      render_auth_button()
-      fetch(`${window["SERVER_HOST"]}/logout`)
+    if(is_logged_in()){
+      admin_redirect()
+    } else {
+      var authParams = new URLSearchParams({
+        client_id: "22020",
+        redirect_uri: `${window["HOST"]}`,
+        response_type: "code",
+        scope: "activity:read"
+      });
+      const url = "https://www.strava.com/oauth/authorize?" + authParams.toString()
+      window.location.replace(url)
     }
   }
 
@@ -99,9 +81,10 @@ export default function Login({ className }) {
   return (
     <div className={`${className} ${styles.container}`}>
       <a
+        onClick={login_redirect}
         id="login-logout-button"
         className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0"
-      ></a>
+      >Manage and create trips</a>
     </div>
   )
 }
