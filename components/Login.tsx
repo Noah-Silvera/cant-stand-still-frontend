@@ -25,7 +25,7 @@ export default function Login({ className }) {
           try {
             var res = await response.json();
           } catch(err){
-            on_login_failure(err)
+            return on_login_failure(err)
           }
 
           if(response.status == 200){
