@@ -1,4 +1,6 @@
 {
   "baseUrl": "http://localhost:4000",
-  "experimentalFetchPolyfill": true
+  "experimentalFetchPolyfill": true,
+  "video": false,
+  "screenshotOnRunFailure": true
  }
