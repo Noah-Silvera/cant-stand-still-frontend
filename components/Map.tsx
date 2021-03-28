@@ -15,39 +15,44 @@ const Map = ({ rides }) => {
   const group = L.featureGroup(ridePolylines);
 
   return (
-    <div id="map" className={styles.map}>
-      <MapContainer bounds={group.getBounds().pad(0.25)} className="h-full w-full">
-        <TileLayer
-          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-        {ridePolylines.map((polyline, idx) => {
-          let lineStyle = {
-            color: "#60A5FA",
-            weight: 3
-          }
+    <div>
+      <div id="map" className={styles.map}>
+        <MapContainer bounds={group.getBounds().pad(0.25)} className="h-full w-full">
+          <TileLayer
+            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+          {ridePolylines.map((polyline, idx) => {
+            let lineStyle = {
+              color: "#60A5FA",
+              weight: 3
+            }
 
-          let highlightedLineStyle = {
-            color: "#2563EB",
-            weight: 4
-          }
-          return (
-            <Polyline
-              key={idx}
-              positions={polyline.getLatLngs()}
-              pathOptions={lineStyle}
-              eventHandlers={{
-                mouseover: (e) => {
-                  e.target.setStyle(highlightedLineStyle)
-                },
-                mouseout: (e) => {
-                  e.target.setStyle(lineStyle)
-                }
-              }}
-            ></Polyline>
-          )
-        })}
-      </MapContainer>
+            let highlightedLineStyle = {
+              color: "#2563EB",
+              weight: 4
+            }
+            return (
+              <Polyline
+                key={idx}
+                positions={polyline.getLatLngs()}
+                pathOptions={lineStyle}
+                eventHandlers={{
+                  mouseover: (e) => {
+                    e.target.setStyle(highlightedLineStyle)
+                  },
+                  mouseout: (e) => {
+                    e.target.setStyle(lineStyle)
+                  }
+                }}
+              ></Polyline>
+            )
+          })}
+        </MapContainer>
+      </div>
+      <div>
+
+      </div>
     </div>
   )
 }
