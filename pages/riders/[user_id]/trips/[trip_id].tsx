@@ -1,5 +1,10 @@
 import styles from '../../../../styles/Home.module.css'
 import RiderNav from '../../../../components/RiderNav'
+import dynamic from "next/dynamic";
+
+const Map = dynamic(() => import("../../../../components/Map"), {
+  ssr: false
+});
 
 export default function Trip({ trip, rider, rides }) {
   return (
@@ -9,6 +14,7 @@ export default function Trip({ trip, rider, rides }) {
         <h1 className="text-4xl mb-2">{trip.name}</h1>
         <h2 className="text-2xl">{new Date(trip.start_date).toDateString()} - {trip.end_date ? new Date(trip.end_date).toDateString() : "ongoing"}</h2>
       </div>
+      <Map/>
     </div>
   )
 }
