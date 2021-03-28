@@ -17,7 +17,7 @@ const Map = ({ rides }) => {
   })
 
   const ridePolygons = ridePolylines.map((polyline: L.Polyline) => {
-    let longLatArray: number[][] = polyline.getLatLngs().map((latLng) => [latLng.lng, latLng.lat])
+    let longLatArray: number[][] = (polyline.getLatLngs() as any).map((latLng) => [latLng.lng, latLng.lat])
     let turfLine = turf.lineString(longLatArray);
 
 
