@@ -5,8 +5,11 @@ import 'leaflet/dist/leaflet.css'
 import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css'
 import "leaflet-defaulticon-compatibility";
 import styles from '../styles/Map.module.css'
+import { useState } from "react"
 
 const Map = ({ rides }) => {
+
+  const [currentRide, setCurrentRide] = useState(null)
 
   const ridePolylines = rides.map((ride) => {
     return (L.Polyline as any).fromEncoded(ride["map"]["summary_polyline"]);
@@ -15,7 +18,7 @@ const Map = ({ rides }) => {
   const group = L.featureGroup(ridePolylines);
 
   return (
-    <div>
+    <div className="flex flex-col">
       <div id="map" className={styles.map}>
         <MapContainer bounds={group.getBounds().pad(0.25)} className="h-full w-full">
           <TileLayer
@@ -40,9 +43,11 @@ const Map = ({ rides }) => {
                 eventHandlers={{
                   mouseover: (e) => {
                     e.target.setStyle(highlightedLineStyle)
+                    setCurrentRide(rides[idx])
                   },
                   mouseout: (e) => {
                     e.target.setStyle(lineStyle)
+                    setCurrentRide(null)
                   }
                 }}
               ></Polyline>
@@ -50,8 +55,13 @@ const Map = ({ rides }) => {
           })}
         </MapContainer>
       </div>
-      <div>
-
+      <div className="w-full">
+        <div className="max-w-6xl m-auto flex flex-row justify-around p-4 text-xl">
+          <p>{currentRide?.name}</p>
+          <p>Distance: {currentRide?.distance_km} km</p>
+          <p>Date: {currentRide && new Date(currentRide?.start_date).toDateString()}</p>
+          <p>Average Speed: {currentRide?.average_speed} km/h</p>
+        </div>
       </div>
     </div>
   )
