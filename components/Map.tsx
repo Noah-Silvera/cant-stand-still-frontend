@@ -1,25 +1,23 @@
-import { MapContainer, TileLayer, Marker,Popup } from 'react-leaflet'
+import { MapContainer, TileLayer, Polyline } from 'react-leaflet'
+import * as L from "leaflet"
+import 'polyline-encoded'
 import 'leaflet/dist/leaflet.css'
 import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css'
 import "leaflet-defaulticon-compatibility";
 import styles from '../styles/Map.module.css'
 
-const Map = () => {
+const Map = ({ rides }) => {
   return (
     <div id="map" className={styles.map}>
-      <MapContainer center={[40.8054,-74.0241]} zoom={14} className="h-full w-full">
+      <MapContainer center={[48.493250,-123.437067]} zoom={9} className="h-full w-full">
         <TileLayer
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        <Marker
-        position={[40.8054,-74.0241]}
-        draggable={true}
-        >
-          <Popup>
-            Hey ! you found me
-          </Popup>
-        </Marker>
+        {rides.map((ride) => {
+          let polyline = (L.Polyline as any).fromEncoded(ride["map"]["summary_polyline"]);
+          return <Polyline positions={polyline.getLatLngs()} key={ride["id"]}/>
+        })}
       </MapContainer>
     </div>
   )

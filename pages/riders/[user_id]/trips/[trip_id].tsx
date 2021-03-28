@@ -14,7 +14,7 @@ export default function Trip({ trip, rider, rides }) {
         <h1 className="text-4xl mb-2">{trip.name}</h1>
         <h2 className="text-2xl">{new Date(trip.start_date).toDateString()} - {trip.end_date ? new Date(trip.end_date).toDateString() : "ongoing"}</h2>
       </div>
-      <Map/>
+      <Map rides={rides}/>
     </div>
   )
 }
