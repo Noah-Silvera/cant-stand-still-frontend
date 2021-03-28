@@ -1,4 +1,4 @@
-import { MapContainer, TileLayer, Polyline } from 'react-leaflet'
+import { MapContainer, TileLayer, Polyline, Popup } from 'react-leaflet'
 import * as L from "leaflet"
 import 'polyline-encoded'
 import 'leaflet/dist/leaflet.css'
@@ -22,7 +22,30 @@ const Map = ({ rides }) => {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         {ridePolylines.map((polyline, idx) => {
-          return <Polyline positions={polyline.getLatLngs()} key={idx}/>
+          let lineStyle = {
+            color: "#60A5FA",
+            weight: 3
+          }
+
+          let highlightedLineStyle = {
+            color: "#2563EB",
+            weight: 4
+          }
+          return (
+            <Polyline
+              key={idx}
+              positions={polyline.getLatLngs()}
+              pathOptions={lineStyle}
+              eventHandlers={{
+                mouseover: (e) => {
+                  e.target.setStyle(highlightedLineStyle)
+                },
+                mouseout: (e) => {
+                  e.target.setStyle(lineStyle)
+                }
+              }}
+            ></Polyline>
+          )
         })}
       </MapContainer>
     </div>
