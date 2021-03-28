@@ -1,7 +1,7 @@
 import styles from '../../../../styles/Home.module.css'
 import RiderNav from '../../../../components/RiderNav'
 
-export default function Trip({ trip, rider }) {
+export default function Trip({ trip, rider, rides }) {
   return (
     <div className={styles.container}>
       <RiderNav rider={rider}/>
@@ -33,13 +33,21 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   const rider_req = await fetch(`${process.env.SERVER_HOST}/riders/${params.user_id}`)
   const trip_req = await fetch(`${process.env.SERVER_HOST}/riders/${params.user_id}/trips/${params.trip_id}.json`)
-  const trip = await trip_req.json()
-  const rider = await rider_req.json()
+
+  const rides_req = await fetch(`${process.env.SERVER_HOST}/riders/${params.user_id}/trips/${params.trip_id}/rides.json`)
+
+
+  const [trip, rider, rides] = await Promise.all([
+    trip_req.json(),
+    rider_req.json(),
+    rides_req.json()
+  ])
 
   return {
     props: {
       trip,
-      rider
+      rider,
+      rides
     },
     revalidate: 5
   }
