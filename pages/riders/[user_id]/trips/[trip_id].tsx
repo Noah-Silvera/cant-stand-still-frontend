@@ -1,12 +1,19 @@
 import styles from '../../../../styles/Home.module.css'
 import RiderNav from '../../../../components/RiderNav'
 import dynamic from "next/dynamic";
+import { useRouter } from 'next/router'
 
 const Map = dynamic(() => import("../../../../components/Map"), {
   ssr: false
 });
 
 export default function Trip({ trip, rider, rides }) {
+  const router = useRouter()
+
+  if (router.isFallback) {
+    return <div>Loading...</div>
+  }
+
   return (
     <div className={styles.container}>
       <RiderNav rider={rider}/>
@@ -33,7 +40,7 @@ export async function getStaticPaths() {
 
   var paths = trip_paths_array.reduce((all_trip_paths: string[], trip_paths: string[]) => all_trip_paths.concat(trip_paths), [])
 
-  return { paths, fallback: false }
+  return { paths, fallback: true }
 }
 
 export async function getStaticProps({ params }) {
